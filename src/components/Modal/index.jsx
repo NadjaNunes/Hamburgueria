@@ -1,25 +1,27 @@
+import { ModalCard } from "./ModalCard";
 
-export const Modal = () =>{
-    return(
+export const Modal = ({ setOpen, buy, setBuy, setCount, count }) => {
+    return (
         <>
-        <header>
-        <h2>Carrinho de Compras</h2>
-        <p>X</p>
-        </header>
-        <div>
-            <ul>
-                <li>
-                    <img src="" alt="" />
-                    <h3>nome do produto</h3>
-                    <p>valor</p>
-                    <img src="" alt="" />
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h3>Total</h3>
-            <p>Valor</p>
-        </div>
+            <div>
+                <div >
+                    <header>
+                        <h2>Carrinho de Compras</h2>
+                        <p onClick={() => setOpen(false)}>X</p>
+                    </header>
+                    <div>
+                        <ul>
+                            {buy.map((product) => (
+                                <ModalCard key={product.id} product={product} buy={buy} setBuy={setBuy} setCount={setCount} count={count}/>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Total</h3>
+                        <p>Valor</p>
+                    </div>
+                </div>
+            </div>
         </>
-    )
-}
+    );
+};

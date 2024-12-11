@@ -1,25 +1,15 @@
-import { useState } from "react";
-import { ListCar } from "../../services/api";
+import { Card } from "./Cards"
 
-export const ProductsList = () => {
-
-    const [products, setProducts] = useState([])
-    const getProducts = async () => {
-        const {data} = await ListCar.get('/products')
-        setProducts(data)
-        
-    }
-    getProducts()
-    return(
-            <section>
-                <p>List</p>
-                <ul>
-                    {
-                    products.map(product => (<li key={product.id}>
-                        <img src={product.img} alt="Products" />
-                    </li>))
-                    }
-                </ul>
-            </section>
+export const ProductsList = ({ products, count, setCount, buy, setBuy }) => {
+    return (
+        <section >
+            <p>List</p>
+            <ul>
+                {products.map((product) => (
+                    <Card key={product.id} buy={buy} setBuy={setBuy} product={product} count={count} setCount={setCount} />
+                ))}
+            </ul>
+        </section>
     )
-} 
+}
+
